@@ -13,9 +13,26 @@ public class Exercise2 {
     }
 
     public boolean existenDuplicados(String str) {
-        MyStack<Character> stack = new LinkedListStack<>();
-        // Colocar codigo aqui
-
-        return false;
+        MyStack<Character> stack = new LinkedListStack<Character>();
+        int validar = 0;
+        for (int i = 0; i < str.length(); i++) {
+            Character caracter = str.charAt(i);
+            if(caracter == '(' || caracter == ')' || caracter == '+' || 
+                caracter == '-') {
+                //Para verificar que solo se ingrese esos caracteres
+                switch (caracter) {
+                    case '+': if(stack.isEmpty() == false) validar++; break;
+                    case '-': if(stack.isEmpty() == false) validar++; break;
+                    case '(': stack.push(caracter); break;
+                    case ')':
+                        if(stack.top() == '(' && validar != 0){
+                            stack.pop();
+                            validar--;
+                        }; break;
+                }
+            }
+            else continue; 
+        }
+        return !stack.isEmpty(); 
     }
 }
