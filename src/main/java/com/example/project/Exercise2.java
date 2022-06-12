@@ -35,5 +35,4 @@ public class Exercise2 {
         }
         return !stack.isEmpty(); 
     }
-    }
 }
